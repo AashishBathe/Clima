@@ -9,7 +9,8 @@ class Location {
       LocationPermission permission;
       permission = await Geolocator.requestPermission();
       Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+              desiredAccuracy: LocationAccuracy.high)
+          .timeout(Duration(seconds: 5));
       latitude = position.latitude;
       longitude = position.longitude;
     } catch (e) {
